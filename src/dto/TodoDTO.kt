@@ -1,4 +1,3 @@
 package com.dbg.dto
 
-class TodoDTO {
-}
+data class TodoDTO(val id: String, val title: String, val done: Boolean = false)
