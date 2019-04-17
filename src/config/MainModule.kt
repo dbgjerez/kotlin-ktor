@@ -1,6 +1,7 @@
 package com.dbg.config
 
 import com.dbg.controller.TodoRoutes
+import com.dbg.dao.TodoRepository
 import com.dbg.service.TodoService
 import com.google.inject.AbstractModule
 import io.ktor.application.Application
@@ -22,6 +23,7 @@ class MainModule(private val application: Application) : AbstractModule() {
 
         bind(TodoRoutes::class.java).asEagerSingleton()
         bind(TodoService::class.java).asEagerSingleton()
+        bind(TodoRepository::class.java).asEagerSingleton()
         bind(Application::class.java).toInstance(application)
     }
 
