@@ -37,6 +37,8 @@ dependencies {
     compile("ch.qos.logback:logback-classic:$logback_version")
     compile("io.ktor:ktor-gson:$ktor_version")
     compile("com.google.inject:guice:$guice_version")
+    compile("com.datastax.oss:java-driver-core:4.0.1")
+    compile("com.datastax.oss:java-driver-query-builder:4.0.1")
     testCompile("io.ktor:ktor-server-tests:$ktor_version")
 }
 
@@ -45,3 +47,8 @@ kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
 sourceSets["main"].resources.srcDirs("resources")
 sourceSets["test"].resources.srcDirs("testresources")
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
