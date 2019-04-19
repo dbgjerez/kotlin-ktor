@@ -21,8 +21,8 @@ class TodoRoutes @Inject constructor(application: Application, todoService: Todo
                     call.parameters["id"].let { todoService::findById }.let { call.respond(HttpStatusCode.OK, it) }
                 }
                 post {
-                    call.receiveOrNull<TodoDTO>().let { todoService::create }
-                        .let { call.respond(HttpStatusCode.Created, it) }
+                    val dto = call.receiveOrNull<TodoDTO>()
+                    call.respond(HttpStatusCode.Created, todoService.create(dto)!!)
                 }
                 put("{id}") {
                     val id = call.parameters["id"]
