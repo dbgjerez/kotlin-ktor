@@ -2,11 +2,11 @@
 All notable changes to this project will be documented in this file.
 
 <a name="1.0"></a>
-## [1.0] - 2023/
+## [1.0] - 2023/03
 ### Features
  - upgrade ktor 2.2 version
  - upgrade OpenJDK to openjdk version "17.0.6" 2023-01-17
- - deleted gradle wrapper
+ - upgrade gradle to 7.5 version
  - upgrade Kotlin to 1.8 version
 
 <a name="0.2.0"></a>
