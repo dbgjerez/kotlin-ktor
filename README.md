@@ -1,1 +1,8 @@
-# kotlin-ktor
+
+
+# Prerequisites
+
+* OpenJDK
+
+# Versions
+

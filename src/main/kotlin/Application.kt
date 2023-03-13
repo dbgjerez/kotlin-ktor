@@ -2,7 +2,7 @@ package com.dbg
 
 import com.dbg.config.MainModule
 import com.google.inject.Guice
-import io.ktor.application.Application
+import io.ktor.server.application.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 

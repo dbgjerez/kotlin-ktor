@@ -2,12 +2,6 @@ package com.dbg.controller
 
 import com.dbg.dto.TodoDTO
 import com.dbg.service.TodoService
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.http.HttpStatusCode
-import io.ktor.request.receiveOrNull
-import io.ktor.response.respond
-import io.ktor.routing.*
 import javax.inject.Inject
 
 class TodoRoutes @Inject constructor(application: Application, todoService: TodoService) {

@@ -4,26 +4,19 @@ val kotlin_version: String by project
 val guice_version: String by project
 
 plugins {
-    application
-    kotlin("jvm") version "1.3.21"
-    id("com.github.johnrengelman.shadow") version "5.0.0"
+    kotlin("jvm") version "1.8.10"
+    id("io.ktor.plugin") version "2.2.4"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
 }
 
 group = "ktor-todo"
-version = "0.0.1-SNAPSHOT"
+version = "1.0"
 
 application {
-    mainClassName = "io.ktor.server.netty.EngineMain"
-}
+    mainClass.set("ApplicationKt")
 
-tasks.withType<Jar> {
-    manifest {
-        attributes(
-            mapOf(
-                "Main-Class" to application.mainClassName
-            )
-        )
-    }
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
 repositories {
@@ -32,23 +25,13 @@ repositories {
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
-    compile("io.ktor:ktor-server-netty:$ktor_version")
-    compile("ch.qos.logback:logback-classic:$logback_version")
-    compile("io.ktor:ktor-gson:$ktor_version")
-    compile("com.google.inject:guice:$guice_version")
-    compile("com.datastax.oss:java-driver-core:4.0.1")
-    compile("com.datastax.oss:java-driver-query-builder:4.0.1")
-    testCompile("io.ktor:ktor-server-tests:$ktor_version")
-}
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
+    implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
 
-kotlin.sourceSets["main"].kotlin.srcDirs("src")
-kotlin.sourceSets["test"].kotlin.srcDirs("test")
-
-sourceSets["main"].resources.srcDirs("resources")
-sourceSets["test"].resources.srcDirs("testresources")
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    implementation("com.google.inject:guice:$guice_version")
+    implementation("com.datastax.oss:java-driver-core:4.0.1")
+    implementation("com.datastax.oss:java-driver-query-builder:4.0.1")
+    testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
